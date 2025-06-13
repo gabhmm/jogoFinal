@@ -1,4 +1,4 @@
-# 🌌 Galactic Defender
+# 🌌 Space Defender
 
 **Desenvolvedor:** Gabriel M Magalhaes  
 **RA:** 1137910  
@@ -6,7 +6,7 @@
 
 ## 🚀 Descrição do Jogo
 
-Galactic Defender é um jogo de nave espacial no estilo arcade clássico, onde o jogador controla uma nave de combate contra hordas de inimigos alienígenas. Inspirado nos grandes sucessos dos anos 80 e 90, o jogo apresenta:
+Space Defender é um jogo de nave espacial no estilo arcade clássico, onde o jogador controla uma nave de combate contra hordas de inimigos alienígenas. Inspirado nos grandes sucessos dos anos 80 e 90, o jogo apresenta:
 
 - 🕹 Controles simples e intuitivos
 - 👾 Inimigos aleatórios
@@ -35,5 +35,3 @@ No ano de 2147, a Terra está sob ataque das forças inimigas. Como piloto da el
 ### Objetivo
 - Destrua o máximo de naves inimigas possível
 - Alcance a maior pontuação
-
-## 📁 Estrutura de Arquivos
