@@ -3,10 +3,8 @@
 **Desenvolvedor:** Gabriel M Magalhaes  
 **RA:** 1137910  
 **Curso:** Ciência da Computação - 1º Semestre
-
-## **TESTADOR** 
-**DESENVOLVEDOR** GUSTAVO BARBOSA PORTELA
-**RA:** 1137640
+ 
+**Testador do Jogo:** Gustavo Barbosa Portela | 1137640
 
 
 ## 🚀 Descrição do Jogo

@@ -11,16 +11,15 @@ import json
 pygame.init()
 inicializarBancoDeDados()
 
-tamanho = (1000,700)
+tamanhoTela = (1000,700)
 branco = (255,255,255)
 preto = (0, 0 ,0 )
 relogio = pygame.time.Clock()
-tela = pygame.display.set_mode( tamanho ) 
+tela = pygame.display.set_mode( tamanhoTela ) 
 pygame.display.set_caption("")
 pygame.mixer.music.load("assets/megalovania.mp3")
 telaInicial = pygame.image.load("assets/tela_inicial.png")
 nave = pygame.image.load("assets/nave_espacial.png")
-estrelaImagem = pygame.image.load("assets/estrela_imagem.png")
 estrelas = []
 
 icone  = pygame.image.load("assets/icone.png")
@@ -36,8 +35,8 @@ fonteMorte = pygame.font.SysFont("arial",120)
 
 for i in range(100):
     estrela = {
-        'x': random.randint(0, tamanho[0]),
-        'y': random.randint(0, tamanho[1]),
+        'x': random.randint(0, tamanhoTela[0]),
+        'y': random.randint(0, tamanhoTela[1]),
         'speed': random.uniform(0.5, 3)
     }
     estrelas.append(estrela)
@@ -45,16 +44,16 @@ for i in range(100):
 def adicionarEstrela():
     for estrela in estrelas:
         estrela['y'] += estrela['speed']
-        if estrela['y'] > tamanho[1]:
+        if estrela['y'] > tamanhoTela[1]:
             estrela['y'] = 0
-            estrela['x'] = random.randint(0, tamanho[0])
+            estrela['x'] = random.randint(0, tamanhoTela[0])
 
         pygame.draw.circle(tela, branco, (int(estrela['x']), int(estrela['y'])), 1)
 
 def pausarJogo():
     pausado = True
     fontePausa = pygame.font.SysFont("arial", 60)
-    textoPausa = fontePausa.render("JOGO PAUSADO", True, (255, 255, 255))
+    textoPausa = fontePausa.render("PAUSE", True, (255, 255, 255))
     pygame.mixer.music.pause()  # Pausa a música
 
     while pausado:
@@ -141,8 +140,8 @@ def jogar():
         
         if posicaoXPersona < 0:
             posicaoXPersona = 0
-        elif posicaoXPersona > tamanho[0] - larguraPersona:
-            posicaoXPersona = tamanho[0] - larguraPersona
+        elif posicaoXPersona > tamanhoTela[0] - larguraPersona:
+            posicaoXPersona = tamanhoTela[0] - larguraPersona
             
          
         tela.fill(branco)
@@ -187,10 +186,10 @@ def jogar():
 
 
 def start():
-    larguraButtonStart = 150
-    alturaButtonStart  = 40
-    larguraButtonQuit = 150
-    alturaButtonQuit  = 40
+    larguraButtonStart = 200
+    alturaButtonStart  = 50
+    larguraButtonQuit = 200
+    alturaButtonQuit  = 50
     
 
     while True:
@@ -199,34 +198,32 @@ def start():
                 quit()
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 if startButton.collidepoint(evento.pos):
-                    larguraButtonStart = 140
-                    alturaButtonStart  = 35
+                    larguraButtonStart = 180
+                    alturaButtonStart  = 40
                 if quitButton.collidepoint(evento.pos):
-                    larguraButtonQuit = 140
-                    alturaButtonQuit  = 35
+                    larguraButtonQuit = 150
+                    alturaButtonQuit  = 40
 
                 
             elif evento.type == pygame.MOUSEBUTTONUP:
                 # Verifica se o clique foi dentro do retângulo
                 if startButton.collidepoint(evento.pos):
-                    #pygame.mixer.music.play(-1)
-                    larguraButtonStart = 150
+                    larguraButtonStart = 180
                     alturaButtonStart  = 40
                     jogar()
                 if quitButton.collidepoint(evento.pos):
-                    #pygame.mixer.music.play(-1)
-                    larguraButtonQuit = 150
+                    larguraButtonQuit = 180
                     alturaButtonQuit  = 40
                     quit()
-                    
+                   
             
             
         tela.fill(branco)
         tela.blit(telaInicial, (0,0) )
 
-        startButton = pygame.draw.rect(tela, branco, (10,10, larguraButtonStart, alturaButtonStart), border_radius=15)
+        startButton = pygame.draw.rect(tela, branco, ((tamanhoTela[0]-larguraButtonStart)/2, (tamanhoTela[1]/2)-alturaButtonStart, larguraButtonStart, alturaButtonStart), border_radius=15)
         startTexto = fonteMenu.render("Iniciar Game", True, preto)
-        tela.blit(startTexto, (25,12))
+        tela.blit(startTexto, ((tamanhoTela[0]-larguraButtonStart+40)/2, (tamanhoTela[1]/2)-alturaButtonStart+5))
         
         quitButton = pygame.draw.rect(tela, branco, (10,60, larguraButtonQuit, alturaButtonQuit), border_radius=15)
         quitTexto = fonteMenu.render("Sair do Game", True, preto)
