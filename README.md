@@ -4,6 +4,11 @@
 **RA:** 1137910  
 **Curso:** Ciência da Computação - 1º Semestre
 
+## **TESTADOR** 
+**DESENVOLVEDOR** GUSTAVO BARBOSA PORTELA
+**RA:** 1137640
+
+
 ## 🚀 Descrição do Jogo
 
 Space Defender é um jogo de nave espacial no estilo arcade clássico, onde o jogador controla uma nave de combate contra hordas de inimigos alienígenas. Inspirado nos grandes sucessos dos anos 80 e 90, o jogo apresenta:
