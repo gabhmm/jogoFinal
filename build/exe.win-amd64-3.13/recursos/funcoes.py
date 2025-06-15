@@ -3,18 +3,16 @@ import json
 import datetime
 
 def inicializarBancoDeDados():
-    # r - read, w - write, a - append
     try:
-        banco = open("log.dat","r")
+        banco = open("log.dat", "r")
+        banco.close()
     except:
-        print("Banco de Dados Inexistente. Criando...")
-        banco = open("log.dat","w")
+        with open("log.dat", "w", encoding="utf-8") as banco:
+            json.dump({}, banco)
 
-    
 def escreverDados(nome, pontos):
-    # Gera data e hora no formato desejado
-    data_hora = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    novo_registro = [pontos, data_hora]
+    dataHora = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    novoRegistro = [pontos, dataHora]
     if os.path.exists("log.dat"):
         with open("log.dat", "r", encoding="utf-8") as f:
             try:
@@ -23,6 +21,7 @@ def escreverDados(nome, pontos):
                 dados = {}
     else:
         dados = {}
-    dados[nome] = novo_registro
+    chave = f"{nome} - {dataHora}"
+    dados[chave] = novoRegistro
     with open("log.dat", "w", encoding="utf-8") as f:
-        json.dump(dados, f)
+        json.dump(dados, f, ensure_ascii=False, indent=2)
