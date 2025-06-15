@@ -17,19 +17,19 @@ preto = (0, 0 ,0 )
 relogio = pygame.time.Clock()
 tela = pygame.display.set_mode( tamanhoTela ) 
 pygame.display.set_caption("")
-pygame.mixer.music.load("assets/megalovania.mp3")
-telaInicial = pygame.image.load("assets/tela_inicial.png")
-nave = pygame.image.load("assets/nave_espacial.png")
+pygame.mixer.music.load("recursos/megalovania.mp3")
+telaInicial = pygame.image.load("recursos/tela_inicial.png")
+nave = pygame.image.load("recursos/nave_espacial.png")
 estrelas = []
 
-icone  = pygame.image.load("assets/icone.png")
+icone  = pygame.image.load("recursos/icone.png")
 pygame.display.set_icon(icone)
-fundoJogo = pygame.image.load("assets/fundoJogo.png")
-fundoDead = pygame.image.load("assets/fundoDead.png")
-missel = pygame.image.load("assets/missile.png")
-missileSound = pygame.mixer.Sound("assets/missile.wav")
-explosaoSound = pygame.mixer.Sound("assets/explosao.wav")
-fonteMenu = pygame.font.SysFont("comicsans",18)
+fundoJogo = pygame.image.load("recursos/fundoJogo.png")
+fundoDead = pygame.image.load("recursos/fundoDead.png")
+missel = pygame.image.load("recursos/missile.png")
+missileSound = pygame.mixer.Sound("recursos/missile.wav")
+explosaoSound = pygame.mixer.Sound("recursos/explosao.wav")
+fonteMenu = pygame.font.SysFont("arial",35)
 fonteMorte = pygame.font.SysFont("arial",120)
 
 
@@ -198,15 +198,15 @@ def start():
                 quit()
             elif evento.type == pygame.MOUSEBUTTONDOWN:
                 if startButton.collidepoint(evento.pos):
-                    larguraButtonStart = 180
-                    alturaButtonStart  = 40
+                    larguraButtonStart = 200
+                    alturaButtonStart  = 50
                 if quitButton.collidepoint(evento.pos):
-                    larguraButtonQuit = 150
-                    alturaButtonQuit  = 40
+                    larguraButtonQuit = 200
+                    alturaButtonQuit  = 50
 
                 
             elif evento.type == pygame.MOUSEBUTTONUP:
-                # Verifica se o clique foi dentro do retângulo
+
                 if startButton.collidepoint(evento.pos):
                     larguraButtonStart = 180
                     alturaButtonStart  = 40
@@ -222,12 +222,12 @@ def start():
         tela.blit(telaInicial, (0,0) )
 
         startButton = pygame.draw.rect(tela, branco, ((tamanhoTela[0]-larguraButtonStart)/2, (tamanhoTela[1]/2)-alturaButtonStart, larguraButtonStart, alturaButtonStart), border_radius=15)
-        startTexto = fonteMenu.render("Iniciar Game", True, preto)
-        tela.blit(startTexto, ((tamanhoTela[0]-larguraButtonStart+40)/2, (tamanhoTela[1]/2)-alturaButtonStart+5))
+        startTexto = fonteMenu.render("INICIAR", True, preto)
+        tela.blit(startTexto, ((tamanhoTela[0]-larguraButtonStart+65)/2, (tamanhoTela[1]/2)-alturaButtonStart+5))
         
-        quitButton = pygame.draw.rect(tela, branco, (10,60, larguraButtonQuit, alturaButtonQuit), border_radius=15)
-        quitTexto = fonteMenu.render("Sair do Game", True, preto)
-        tela.blit(quitTexto, (25,62))
+        quitButton = pygame.draw.rect(tela, branco, ((tamanhoTela[0]-larguraButtonQuit)/2, (tamanhoTela[1]/2)+alturaButtonQuit/2, larguraButtonQuit, alturaButtonQuit), border_radius=15)
+        quitTexto = fonteMenu.render("SAIR", True, preto)
+        tela.blit(quitTexto, ((tamanhoTela[0]-larguraButtonQuit+110)/2, (tamanhoTela[1]/2)+alturaButtonQuit/2+5))
         
         pygame.display.update()
         relogio.tick(60)
@@ -305,6 +305,4 @@ def dead():
         pygame.display.update()
         relogio.tick(60)
 
-
 start()
-
