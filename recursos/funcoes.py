@@ -1,38 +1,28 @@
-import os, time
+import os
 import json
-from datetime import datetime
+import datetime
 
-
-def limpar_tela():
-    os.system("cls")
-    
-def aguarde(segundos):
-    time.sleep(segundos)
-    
 def inicializarBancoDeDados():
     # r - read, w - write, a - append
     try:
-        banco = open("base.atitus","r")
+        banco = open("log.dat","r")
     except:
         print("Banco de Dados Inexistente. Criando...")
-        banco = open("base.atitus","w")
+        banco = open("log.dat","w")
 
     
 def escreverDados(nome, pontos):
-    # INI - inserindo no arquivo
-    banco = open("base.atitus","r")
-    dados = banco.read()
-    banco.close()
-    if dados != "":
-        dadosDict = json.loads(dados)
+    # Gera data e hora no formato desejado
+    data_hora = datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+    novo_registro = [pontos, data_hora]
+    if os.path.exists("log.dat"):
+        with open("log.dat", "r", encoding="utf-8") as f:
+            try:
+                dados = json.load(f)
+            except Exception:
+                dados = {}
     else:
-        dadosDict = {}
-        
-    data_br = datetime.now().strftime("%d/%m/%Y")
-    dadosDict[nome] = (pontos, data_br)
-    
-    banco = open("base.atitus","w")
-    banco.write(json.dumps(dadosDict))
-    banco.close()
-    
-    # END - inserindo no arquivo
+        dados = {}
+    dados[nome] = novo_registro
+    with open("log.dat", "w", encoding="utf-8") as f:
+        json.dump(dados, f)
